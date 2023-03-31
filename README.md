@@ -16,7 +16,7 @@ Tests to open the page, check landing page elements and do a simple search
 
 python3 -m pytest --html=report.html --self-contained-html --headed tests.py
 
-- For headless replace the--headed parameter with --headless
+- For headless remove the  --headed parameter
 
 ## Documentation
 
