@@ -10,9 +10,11 @@ STRINGS = {'motto': 'Infinite image generation powered by AI.',
            'donate': 'Your generosity keeps us going.',
            'in_touch': 'Get in touch',
            'images_generated': 'Images Generated:'}
+DEFAULT_TIMEOUT = 3000
 
 
 def test_landing_page(page: Page) -> None:
+    page.set_default_timeout(DEFAULT_TIMEOUT)
     page.goto(URL)
     search_bar = page.query_selector(SELECTORS['search_bar'])
     assert 'Try ' in search_bar.get_attribute('placeholder')
@@ -26,9 +28,10 @@ def test_landing_page(page: Page) -> None:
     page.get_by_role("link", name=STRINGS['in_touch']).press("Escape")
 
 
-
-@pytest.mark.parametrize("search_string", ['cat'])
+@pytest.hookimpl(hookwrapper=True)
+@pytest.mark.parametrize("search_string", ['doodooo'])
 def test_search(search_string, page: Page) -> None:
+    page.set_default_timeout(DEFAULT_TIMEOUT)
     page.goto(URL)
     search_bar = page.wait_for_selector(SELECTORS['search_bar'])
     search_bar.type(search_string)
