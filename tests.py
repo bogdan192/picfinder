@@ -29,7 +29,7 @@ def test_landing_page(page: Page) -> None:
 
 
 @pytest.hookimpl(hookwrapper=True)
-@pytest.mark.parametrize("search_string", ['doodooo'])
+@pytest.mark.parametrize("search_string", ['cat'])
 def test_search(search_string, page: Page) -> None:
     page.set_default_timeout(DEFAULT_TIMEOUT)
     page.goto(URL)
@@ -40,5 +40,5 @@ def test_search(search_string, page: Page) -> None:
     assert results is not None
     results_section = page.wait_for_selector('.grid-wrapper')
     assert results_section is not None
-    page.wait_for_selector(SELECTORS['spiners']).is_visible()
+    page.wait_for_selector(SELECTORS['spiners'], timeout=12000).is_visible()
 
