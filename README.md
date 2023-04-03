@@ -10,6 +10,9 @@ Tests to open the page, check landing page elements and do a simple search
 
 - Install python 3 [Download Page](https://www.python.org/downloads/)
 - Install playwright for Python (both module and browsers) see [Installation guide](https://playwright.dev/python/docs/intro)
+- Install the requirements in requirements.txt
+
+python3 -m pip install -r requirements.txt
 
 ## How to run
 - For headed execution (see the browser) 
