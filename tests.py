@@ -4,7 +4,8 @@ from playwright.sync_api import Page
 
 URL = 'https://picfinder.ai/'
 SELECTORS = {'search_bar': '#form-search-bar\[search-box\]',
-             'spiners': '.grid-wrapper > div > .s-result-grid-item > .s-result-grid-item-hover'}
+             'spiners': '.grid-wrapper > div > .s-result-grid-item > .s-result-grid-item-hover',
+             'generate_button': '.z-2'}
 STRINGS = {'motto': 'Infinite image generation powered by AI.',
            'copywright': 'Copyright © 2023 PicFinder.ai All rights reserved.',
            'donate': 'Your generosity keeps us going.',
@@ -35,7 +36,8 @@ def test_search(search_string, page: Page) -> None:
     page.goto(URL)
     search_bar = page.wait_for_selector(SELECTORS['search_bar'])
     search_bar.type(search_string)
-    page.locator("#aux-buttons").get_by_role("link").click()
+    page.locator(SELECTORS['generate_button']).click()
+    # page.locator("#aux-buttons").get_by_role("link").click()
     results = page.wait_for_selector('.s-result')
     assert results is not None
     results_section = page.wait_for_selector('.grid-wrapper')
